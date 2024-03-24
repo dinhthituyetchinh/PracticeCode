@@ -6,14 +6,12 @@
 
 void randomArr(int *a, int *n);
 void output(int *a, int n);
-int countNumber(int *a, int n);
 void main()
 {
     int A[MAX_SIZE], N;
     randomArr(A, &N);
     printf("Noi dung cua mang la:\n");
     output(A, N);
-    printf("\nCo %d phan tu duong trong mang.\n", countNumber(A, N));
     getch();
 }
 
@@ -39,21 +37,8 @@ void randomArr(int *a, int *n)
 
 void output(int *a, int n)
 {
-    for (int i = 0; i < n; i++)
+     for (int i = 0; i < n; i++)
     {
         printf("%d\t", *(a + i));
     }
-}
-
-int countNumber(int *a, int n)
-{
-    int count = 0;
-    for (int i = 0; i < n; i++)
-    {
-       if (*(a + i) > 0)
-       {
-        count ++;
-       }
-    }
-    return count;
 }

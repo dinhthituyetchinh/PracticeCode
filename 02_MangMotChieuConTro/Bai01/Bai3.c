@@ -5,6 +5,7 @@
 void inputArr(int *a, int *n);
 void output(int *a, int n);
 int totalOfArr(int *a, int n);
+int totalEvenElementOfArr(int *a, int n);
 
 void main()
 {
@@ -13,6 +14,8 @@ void main()
     printf("Noi dung cua mang:\n");
     output(A, N);
     printf("\nTong mang: %d\n", totalOfArr(A, N));
+    printf("\nTong phan tu chan trong mang: %d\n", totalEvenElementOfArr(A, N));
+
     getch();
 }
 
@@ -51,6 +54,19 @@ int totalOfArr(int *a, int n)
      for (int i = 0; i < n; i++)
     {
         total += *(a + i);
+    }
+    return total;
+}
+
+int totalEvenElementOfArr(int *a, int n)
+{
+    int total = 0;
+     for (int i = 0; i < n; i++)
+    {
+        if((*(a + i)) % 2 == 0)
+        {
+            total += *(a + i);
+        }
     }
     return total;
 }
