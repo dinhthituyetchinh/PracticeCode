@@ -6,7 +6,8 @@
 
 void randomArr(int *a, int *n);
 void output(int *a, int n);
-int indexOfElement(int *a, int n, int x);
+int elementMax(int *a, int n);
+int elementMin(int *a, int n);
 
 void main()
 {
@@ -14,10 +15,7 @@ void main()
     randomArr(A, &N);
     printf("Noi dung cua mang la:\n");
     output(A, N);
-    int x;
-    printf("\nNhap vao gia tri ma ban muon kiem tra vi tri: ");
-    scanf("%d", &x);
-    printf("Phan tu %d o vi tri thu: %d", x, indexOfElement(A, N, x)); 
+    printf("\nPhan tu lon nhat la: %d, nho nhat la: %d", elementMax(A, N), elementMin(A, N));
     getch();
 }
 
@@ -49,15 +47,29 @@ void output(int *a, int n)
     }
 }
 
-int indexOfElement(int *a, int n, int x)
+int elementMax(int *a, int n)
 {
-    int index = 0;
-    for (int i = 0; i < n; i++)
+    int max = *a;
+    for(int i = 0; i < n; i++)
     {
-       if(*(a + i) == x)
-       {
-        index = i;
-       }
+        if(*(a + i) > max)
+        {
+            max = *(a + i);
+        }
     }
-    return index;
+    return max;
+}
+
+
+int elementMin(int *a, int n)
+{
+int min = *a;
+    for(int i = 0; i < n; i++)
+    {
+        if(*(a + i) < min)
+        {
+            min = *(a + i);
+        }
+    }
+    return min;
 }

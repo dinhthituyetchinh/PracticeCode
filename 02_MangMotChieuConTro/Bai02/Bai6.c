@@ -6,7 +6,7 @@
 
 void randomArr(int *a, int *n);
 void output(int *a, int n);
-int indexOfElement(int *a, int n, int x);
+bool checkElement(int *a, int n, int x);
 
 void main()
 {
@@ -15,9 +15,17 @@ void main()
     printf("Noi dung cua mang la:\n");
     output(A, N);
     int x;
-    printf("\nNhap vao gia tri ma ban muon kiem tra vi tri: ");
+    printf("\nNhap vao gia tri ma ban muon kiem tra: ");
     scanf("%d", &x);
-    printf("Phan tu %d o vi tri thu: %d", x, indexOfElement(A, N, x)); 
+    if (checkElement(A, N, x) == true)
+    {
+       printf("Tồn tại %d trong mảng", x);
+    }
+    else
+    {
+        rintf("Không tồn tại %d trong mảng", x);
+
+    }
     getch();
 }
 
@@ -49,15 +57,14 @@ void output(int *a, int n)
     }
 }
 
-int indexOfElement(int *a, int n, int x)
+bool checkElement(int *a, int n, int x) // Err
 {
-    int index = 0;
     for (int i = 0; i < n; i++)
     {
        if(*(a + i) == x)
        {
-        index = i;
+            return true;
        }
     }
-    return index;
+    return false;
 }
