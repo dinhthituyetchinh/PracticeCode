@@ -7,37 +7,22 @@
 
 void randomArr(int *a, int *n);
 void output(int *a, int n);
-int checkElement(int *a, int n, int x);
-bool checkElement2(int *a, int n, int x);
-
+void addElement(int *a, int *n, int x, int k);
 void main()
 {
     int A[MAX_SIZE], N;
     randomArr(A, &N);
     printf("Noi dung cua mang la:\n");
     output(A, N);
-    int x;
-    printf("\nNhap vao gia tri ma ban muon kiem tra: ");
+    int x, k;
+    printf("\nNhap vao gia tri ma ban muon them: ");
     scanf("%d", &x);
-    if (checkElement(A, N, x) == 1)
-    {
-       printf("Ton tai %d trong mang", x);
-    }
-    else
-    {
-        printf("Khong ton tai %d trong mang", x);
+    printf("Nhap vao vi tri ma ban muon them phan tu %d vao: ", x);
+    scanf("%d", &k);
+    addElement(A, &N, x, k);
+    printf("Mang sau khi them:\n");
+    output(A, N);
 
-    }
-
-    if (checkElement2(A, N, x) == true)
-    {
-       printf("\nTon tai %d trong mang", x);
-    }
-    else
-    {
-        printf("\nKhong ton tai %d trong mang", x);
-
-    }
     getch();
 }
 
@@ -69,26 +54,22 @@ void output(int *a, int n)
     }
 }
 
-int checkElement(int *a, int n, int x) 
+// Thêm vào mảng một giá trị x tại vị trí k
+// n = 4
+// a[] = {1, 5, 7, 2};
+// arr   = {a[0], a[1], a[2], a[3]}; 
+// Thêm: a[k] = {9};
+//TH1: k = 0 => a[k] = a[0] => {9, 1, 5, 7, 2} 
+//=> arr = {a[k] = a[0], a[0] = a[0 + 1], a[1] = a[1 + 1], a[2] = a[2 + 1], a[3] = a[3 + 1]};
+//TH2: k = 4 => a[k] thêm vào cuối cùng => {1, 5, 7, 2, 9}
+//=> arr = {a[0], a[1], a[2], a[3], a[k] = a[4]};
+void addElement(int *a, int *n, int x, int k)
 {
-    for (int i = 0; i < n; i++)
-    {
-       if(*(a + i) == x)
-       {
-            return 1;
-       }
-    }
-    return 0;
-}
-
-bool checkElement2(int *a, int n, int x) 
-{
-    for (int i = 0; i < n; i++)
-    {
-       if(*(a + i) == x)
-       {
-            return true;
-       }
-    }
-    return false;
+    for(int i = *n; i >= k + 1; i--)
+	{
+		*(a + i) = *(a + (i - 1));
+	}
+    *(a + k) = x;
+	(*n)++; 
+    
 }
